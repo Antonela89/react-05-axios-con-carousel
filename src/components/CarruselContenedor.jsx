@@ -2,13 +2,21 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import CardContenedor from './CardContenedor';
+import styled from 'styled-components';
+
+const ListadoCards = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `
 
 const CarruselContenedor = ({ items }) => {
   const cardsPerPage = 3; // Número deseado de tarjetas por página
 
-  const carouselStyle = {
-    height: '400px', // Cambio de estilo segun necesidades
-  };
+  //const carouselStyle = {
+    //height: '900px', // Cambio de estilo segun necesidades
+  //};
 
   // Dividir la lista de items en grupos más pequeños (tarjetas por página).
   const paginatedItems = [];
@@ -21,15 +29,15 @@ const CarruselContenedor = ({ items }) => {
       axis='horizontal'
       showStatus={false}
       showThumbs={false}
-      showArrows = {false}
+      showArrows = {true}
       dynamicHeight = {false}
       emulateTouch = {false}
       width="100%"
       infiniteLoop
-      style={carouselStyle} // aqui va el estilo 
+      //style={carouselStyle} // aqui va el estilo 
     >
       {paginatedItems.map((page, pageIndex) => (
-        <div key={pageIndex}>
+        <ListadoCards key={pageIndex}>
           {page.map((item) => (
             <CardContenedor
               key={item.id}
@@ -38,7 +46,7 @@ const CarruselContenedor = ({ items }) => {
               descripcion={item.overview}
             />
           ))}
-        </div>
+        </ListadoCards>
       ))}
     </Carousel>
   );
